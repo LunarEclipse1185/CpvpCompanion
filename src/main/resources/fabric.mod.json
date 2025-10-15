@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "cpvp_companion",
+	"version": "${version}",
+	"name": "CPVP Companion",
+	"description": "Damage tick visualizer, block placement indicator and failed action warnings.",
+	"authors": [
+		"SH_Bu"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/modid/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": [
+			"com.brainbu.CpvpCompanionMod"
+		]
+	},
+	"mixins": [
+		{
+			"config": "cpvp_companion.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": ">=1.20",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

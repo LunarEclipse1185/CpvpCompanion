@@ -1,0 +1,55 @@
+PROMPT 1
+
+Take over this empty project of a Minecraft fabric client-side mod meant to aid my PVP skill. we are now to write 3 functionalities: Damage tick visualizer, block placement indicator and failed action warnings. Before writing, change the configs to integrate with the mod 'Cloth Config v17' by preparing to use the annotations that come with 'Auto Config' features. integrate with 'Mod Menu version 13' by allowing the player to access the config menu through its mod menu screen.
+
+#Game mechanics and planned functionalities
+
+## Damage tick
+One damage tick is 10 game ticks cooldown after any player/mob entity is damaged before they can receive another damage again, the exception to which is when they received a larger amount of single damage in the 10 ticks, upon which the difference is applied, making the final damage equivalent to just the larger one. however, the damage ticks is not reset, meaning it will end as planned initially. the phrase 'damage tick' always refer to a 10 game ticks period.
+
+Build suitable infrastructure for coexistence of 3 separate functionality and their config interface. Make most of the UI size, margins and colors configurable.
+
+Prerequisites:
+1. explain how gui anchor configs are usually implemented, while being able to be pushed by other gui elements. there must be some sort of vanilla interface or fabric community interface or so.
+
+2. explain how damage ticks are represented in Minecraft source (client). we'll need the current position of every player in his 10 ticks.
+
+3. explain if the client has the information of the damage amount & source type, and/or if the said follow-up damage has been applied (larger).
+
+Functionality:
+We display the progress of damage ticks of each player as a list, positioned at configurable anchors {Left | Left of cursor | Right of cursor  | Right}. the list appears borderless and each row consists of: player's head skin on the left and a horizontal bar representing the 10 ticks. the displayed players are those within a configurable distance to us. the horizontal bar is divided horizontally into 10 rectangles all with black vertical border and no horizontal border (each referred to as a tickbox). upon damaged the left <passed ticks> tickboxes are filled red(aesthetic) and others faint transparent grey. when the player is not active, the bar does not render. bar width shall be configurable.
+
+Upon the corresponding player is damaged, various types of icons may show up at that specific tickbox's center:
+end_crystal item icon, if the damage is dealt by it, first 1.2x height of tickbox & 80% alpha and linearly transition into 0.8x & 100% alpha within 2 ticks; add a transparent crimson tint if the damage fails to apply (not larger than the previous).
+filled_anchor_top icon, exactly same as above.
+strength potion effect icon if dealt by melee damage AND if applies successfully, transitions as described above.
+weakness potion effect icon if dealt by melee damage AND if fails, transitions as described above.
+Totem item icon if the player pops a totem in this tick. transition: first 1.2x height 80% alpha and linearly transition into 2x and 0% alpha within 4 ticks.
+
+If the mentioned textures cannot be referred to within code, let them be images that i need to prepare later.
+
+## block placement
+we aim to mark all block surfaces that the current player can reach and successfully place a block on, accounting for 1) reach & view blocking and 2) entity occupation. display a faint cyan on those surfaces available, rendering through any blocks and entities.
+
+You should design and report the approach, which should not be computation intensive.
+
+## action warning
+### the following actions should trigger a message popping under the cursor, which should all be togglable, and severity configurable:
+hitting a player with anything other than a sword. "No Knockback" medium
+melee hitting a player in damage tick. "In Damage Tick" fatal
+placing a block in a entity-occupied spot. "Bad Block Placement" fatal
+placing an end crystal on blocks other than obsidian and bedrock, or the placement failed (reference: placement succeeds if the 2 blocks above the clicked block are 'replaceable' and there is no entity in the hitbox). "Bad Crystal Placement" fatal
+the client explodes >=2nd crystals/respawn_anchors(count combined) within a damage tick(that ) of any one opponent. "Attack Too Fast" medium
+an opponent's damage tick expires without getting applied "Attack Too Slow" medium
+the client dealt melee/crystal/anchor damage, not strong enough to apply, to an opponent in damage tick. "Weak Damage" medium
+
+for the ones not possible to implement with client side data, give a detailed explanation.
+
+text color: fatal for red, medium for yellow and normal for white. use a good-looking palette.
+
+messages form a list that is pushed from top, and new messages should scroll the list smoothly. messages start to fade out on 1 sec and completely disappear on 1.5 sec.
+
+### the following actions should trigger a red glow from the screen border fading in. the warning fades out accordingly.
+not holding 2 totems in main and offhand after 1 second.
+
+
