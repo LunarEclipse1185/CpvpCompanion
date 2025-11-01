@@ -1,15 +1,21 @@
 package com.brainbu;
 
+import com.brainbu.config.ConfigManager;
+//import com.brainbu.render.FaceHighlight.ModBlockEntities;
+import com.mojang.logging.LogUtils;
 import net.fabricmc.api.ClientModInitializer;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class CpvpCompanionMod implements ClientModInitializer {
     public static final String MOD_ID = "cpvp_companion";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info("CPVP Companion is initializing!");
+        ConfigManager.init();
+//        ModBlockEntities.initialize();
+        ClientEvents.registerEvents();
+        LOGGER.info("CPVP Companion initialized successfully!");
     }
 }

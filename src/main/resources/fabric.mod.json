@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"client": [
 			"com.brainbu.CpvpCompanionMod"
+		],
+		"modmenu": [
+			"com.brainbu.config.ModMenuIntegration"
 		]
 	},
 	"mixins": [
@@ -27,11 +30,12 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.14",
-		"minecraft": ">=1.20",
+		"minecraft": "=1.21.4",
 		"java": ">=21",
-		"fabric-api": "*"
+		"fabric-api": "*",
+		"cloth-config": ">=17.0.144"
 	},
 	"suggests": {
-		"another-mod": "*"
+		"modmenu": ">=13.0.0"
 	}
 }

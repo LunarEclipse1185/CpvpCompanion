@@ -37,7 +37,7 @@ You should design and report the approach, which should not be computation inten
 ### the following actions should trigger a message popping under the cursor, which should all be togglable, and severity configurable:
 hitting a player with anything other than a sword. "No Knockback" medium
 melee hitting a player in damage tick. "In Damage Tick" fatal
-placing a block in a entity-occupied spot. "Bad Block Placement" fatal
+//placing a block in a entity-occupied spot. "Bad Block Placement" fatal
 placing an end crystal on blocks other than obsidian and bedrock, or the placement failed (reference: placement succeeds if the 2 blocks above the clicked block are 'replaceable' and there is no entity in the hitbox). "Bad Crystal Placement" fatal
 the client explodes >=2nd crystals/respawn_anchors(count combined) within a damage tick(that ) of any one opponent. "Attack Too Fast" medium
 an opponent's damage tick expires without getting applied "Attack Too Slow" medium
@@ -53,3 +53,28 @@ messages form a list that is pushed from top, and new messages should scroll the
 not holding 2 totems in main and offhand after 1 second.
 
 
+
+
+Pearl, Fire, Fall damage
+
+        crystalPunches
+        crystalHits
+        anchorHits
+        knockbackHits
+        otherMeleeHits
+        fireDamages
+        fallDamages
+        
+
+
+
+isFaceFullSquare
+
+
+CHECKPOINTS
+
+highlight feet blocks
+others.
+
+blank config screen
+configs
